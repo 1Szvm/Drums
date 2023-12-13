@@ -41,9 +41,11 @@
         getData("https://raw.githubusercontent.com/mkatay/json-drums/main/drums",renderSite)
 
         function press(e){
-            document.getElementById(e.keyCode).play()
-            document.getElementById("c"+e.keyCode).classList.toggle("glow")
-            setTimeout(() => {document.getElementById("c"+e.keyCode).classList.toggle("glow")}, 100)
+            if(document.getElementById(e.keyCode)!=null){
+                document.getElementById(e.keyCode).play()
+                document.getElementById("c"+e.keyCode).classList.toggle("glow")
+                setTimeout(() => {document.getElementById("c"+e.keyCode).classList.toggle("glow")}, 100)
+            }
         }
 
         function renderSite(data){
