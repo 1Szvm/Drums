@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="getData.js"></script>
+    <style>
+        body{
+            background-image: url(https://source.unsplash.com/4O5sezmCeCM);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .container{
+            height: 50vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sound{
+            border: solid orange 1px;
+            border-radius: 5px;
+            width: 60px;
+            width: 60px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: orange;
+            text-align: center;
+            margin: 5px;
+        }
+        .glow{
+            background-color: #ffffff76;
+            box-shadow: 0px 0px 10px 5px orange;
+        }
+    </style>
+</head>
+<body onkeydown="press(event)">
+    <div id="mixer" class="container">
+    </div>
+
+    <script defer>
+        getData("https://raw.githubusercontent.com/mkatay/json-drums/main/drums",renderSite)
+
+        function press(e){
+            document.getElementById(e.keyCode).play()
+            document.getElementById("c"+e.keyCode).classList.toggle("glow")
+            setTimeout(() => {document.getElementById("c"+e.keyCode).classList.toggle("glow")}, 100)
+        }
+
+        function renderSite(data){
+            data.forEach(element => {
+                document.getElementById("mixer").innerHTML+=`
+                <div class="sound" id="c${element.key}">
+                    <h1>${element.letter}</h1>
+                    <p>${element.sound}</p>
+                </div>
+                <audio src="${element.url}" id="${element.key}"></audio>`
+            });
+        }
+    </script>
+</body>
+</html>
