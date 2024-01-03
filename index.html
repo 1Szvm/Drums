@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Document</title>
     <script src="getData.js"></script>
     <style>
@@ -10,22 +11,22 @@
             background-image: url(https://source.unsplash.com/4O5sezmCeCM);
             background-size: cover;
             background-repeat: no-repeat;
-        }
-        .container{
-            height: 50vw;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: relative;
+            width: 85%;
+            height: 650px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .sound{
             border: solid orange 1px;
             border-radius: 5px;
-            width: 60px;
-            width: 60px;
+            width: 70px;
+            max-height: 100px;
             background-color: rgba(0, 0, 0, 0.7);
             color: orange;
-            text-align: center;
             margin: 5px;
+            margin-top: 100px;
+            padding: 5px;
         }
         .glow{
             background-color: #ffffff76;
@@ -34,12 +35,9 @@
     </style>
 </head>
 <body onkeydown="press(event)">
-    <div id="mixer" class="container">
+    <div class="container">
+        <div id="mixer" class="row d-flex justify-content-around"></div>
     </div>
-
-    <footer>
-        <h2 style="color: orange;">Yeah, i know very lame</h2>
-    </footer>
 
     <script defer>
         getData("https://raw.githubusercontent.com/mkatay/json-drums/main/drums",renderSite)
@@ -55,7 +53,7 @@
         function renderSite(data){
             data.forEach(element => {
                 document.getElementById("mixer").innerHTML+=`
-                <div class="sound" id="c${element.key}">
+                <div class="sound col-1 text-center" id="c${element.key}">
                     <h1>${element.letter}</h1>
                     <p>${element.sound}</p>
                 </div>
